@@ -1,0 +1,132 @@
+#!/usr/bin/env python
+"""
+Universal unit test runner for the Superheroes API project.
+This script runs all unit tests with comprehensive reporting.
+"""
+
+import os
+import sys
+import subprocess
+import django
+from django.conf import settings
+from django.test.utils import get_runner
+
+
+def print_banner():
+    """Print a banner for the test runner."""
+    print("=" * 60)
+    print("🧪 SUPERHEROES API - UNIT TEST RUNNER")
+    print("=" * 60)
+
+
+def print_section(title):
+    """Print a section header."""
+    print(f"\n📋 {title}")
+    print("-" * 40)
+
+
+def run_command(command, description):
+    """Run a command and return the result."""
+    print(f"Running: {description}")
+    print(f"Command: {command}")
+    print()
+    
+    try:
+        result = subprocess.run(
+            command,
+            shell=True,
+            capture_output=True,
+            text=True,
+            cwd=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        )
+        
+        if result.stdout:
+            print(result.stdout)
+        if result.stderr:
+            print(result.stderr)
+            
+        return result.returncode == 0
+    except Exception as e:
+        print(f"❌ Error running command: {e}")
+        return False
+
+
+def run_all_tests():
+    """Run all unit tests for the project."""
+    print_banner()
+    
+    # Set up Django environment
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'base.settings')
+    
+    # Activate virtual environment if it exists
+    venv_activate = "source env/bin/activate &&" if os.path.exists("env/bin/activate") else ""
+    
+    test_commands = [
+        {
+            "command": f"{venv_activate} python manage.py test --verbosity=2",
+            "description": "Running all unit tests with verbose output"
+        },
+        {
+            "command": f"{venv_activate} python manage.py test health --verbosity=2",
+            "description": "Running health app tests specifically"
+        }
+    ]
+    
+    all_passed = True
+    
+    for test_cmd in test_commands:
+        print_section(test_cmd["description"])
+        success = run_command(test_cmd["command"], test_cmd["description"])
+        if not success:
+            all_passed = False
+        print()
+    
+    # Run coverage if available
+    print_section("Test Coverage Report")
+    coverage_success = run_command(
+        f"{venv_activate} coverage run --source='.' manage.py test && coverage report",
+        "Generating test coverage report"
+    )
+    
+    if coverage_success:
+        print_section("Detailed Coverage Report for Health App")
+        run_command(
+            f"{venv_activate} coverage report --include='health/*'",
+            "Health app coverage details"
+        )
+    
+    # Final summary
+    print_section("TEST SUMMARY")
+    if all_passed:
+        print("✅ All tests passed successfully!")
+        print("🎉 Your code is ready for deployment!")
+    else:
+        print("❌ Some tests failed!")
+        print("🔧 Please fix the failing tests before proceeding.")
+    
+    print("\n" + "=" * 60)
+    print("📚 Available test commands:")
+    print("  python manage.py test                    # Run all tests")
+    print("  python manage.py test health             # Run health tests only")
+    print("  python manage.py test -v 2               # Verbose output")
+    print("  coverage run --source='.' manage.py test # With coverage")
+    print("=" * 60)
+    
+    return all_passed
+
+
+def main():
+    """Main function."""
+    try:
+        success = run_all_tests()
+        sys.exit(0 if success else 1)
+    except KeyboardInterrupt:
+        print("\n\n⚠️  Test execution interrupted by user.")
+        sys.exit(1)
+    except Exception as e:
+        print(f"\n❌ Unexpected error: {e}")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

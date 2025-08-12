@@ -1,0 +1,51 @@
+openapi: 3.0.3
+info:
+  title: Superheroes API
+  version: 0.1.0
+  description: A comprehensive API for managing superheroes data
+paths:
+  /health/:
+    get:
+      operationId: health_check
+      description: Check the health status of the API service
+      summary: Health Check
+      tags:
+      - Health
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+          description: ''
+components:
+  schemas:
+    HealthCheckResponse:
+      type: object
+      description: Serializer for health check response.
+      properties:
+        status:
+          type: string
+          description: Status of the health check
+        code:
+          type: integer
+          description: HTTP status code
+        message:
+          type: string
+          description: Health check message
+        version:
+          type: string
+          description: API version
+      required:
+      - code
+      - message
+      - status
+      - version
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
