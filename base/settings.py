@@ -44,8 +44,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "base",  # Added to enable custom management commands
     "health",
+    "superheroes",
     "rest_framework",
     "drf_spectacular",
+    "django_filters",
 ]
 
 MIDDLEWARE = [

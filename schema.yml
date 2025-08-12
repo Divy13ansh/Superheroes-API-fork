@@ -4,6 +4,447 @@ info:
   version: 0.1.0
   description: A comprehensive API for managing superheroes data
 paths:
+  /api/superheroes/:
+    get:
+      operationId: superheroes_list
+      description: Get a paginated list of all superheroes with basic information
+      summary: List all superheroes
+      parameters:
+      - in: query
+        name: age_max
+        schema:
+          type: integer
+      - in: query
+        name: age_min
+        schema:
+          type: integer
+      - in: query
+        name: alias
+        schema:
+          type: string
+      - in: query
+        name: created_after
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: created_before
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: height_max
+        schema:
+          type: number
+      - in: query
+        name: height_min
+        schema:
+          type: number
+      - in: query
+        name: is_active
+        schema:
+          type: boolean
+      - in: query
+        name: is_villain
+        schema:
+          type: boolean
+      - in: query
+        name: name
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - in: query
+        name: origin_story
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - in: query
+        name: power_level
+        schema:
+          type: integer
+      - in: query
+        name: power_level__gt
+        schema:
+          type: integer
+      - in: query
+        name: power_level__gte
+        schema:
+          type: integer
+      - in: query
+        name: power_level__lt
+        schema:
+          type: integer
+      - in: query
+        name: power_level__lte
+        schema:
+          type: integer
+      - in: query
+        name: power_level_max
+        schema:
+          type: integer
+      - in: query
+        name: power_level_min
+        schema:
+          type: integer
+      - in: query
+        name: powers
+        schema:
+          type: string
+      - in: query
+        name: real_name
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - in: query
+        name: universe
+        schema:
+          type: string
+          enum:
+          - Custom
+          - DC
+          - Marvel
+          - Other
+        description: |-
+          Which universe the superhero belongs to
+
+          * `Marvel` - Marvel Universe
+          * `DC` - DC Universe
+          * `Custom` - Custom Universe
+          * `Other` - Other Universe
+      - in: query
+        name: universe__in
+        schema:
+          type: array
+          items:
+            type: string
+        description: Multiple values may be separated by commas.
+        explode: false
+        style: form
+      - in: query
+        name: updated_after
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: updated_before
+        schema:
+          type: string
+          format: date-time
+      - in: query
+        name: weight_max
+        schema:
+          type: number
+      - in: query
+        name: weight_min
+        schema:
+          type: number
+      tags:
+      - Superheroes
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSuperheroListList'
+          description: ''
+    post:
+      operationId: superheroes_create
+      description: Create a new superhero with the provided information
+      summary: Create a new superhero
+      tags:
+      - Superheroes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuperheroCreateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SuperheroCreateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SuperheroCreateRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuperheroCreate'
+          description: ''
+  /api/superheroes/{id}/:
+    get:
+      operationId: superheroes_retrieve
+      description: Get detailed information about a specific superhero
+      summary: Get superhero details
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Superhero.
+        required: true
+      tags:
+      - Superheroes
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuperheroDetail'
+          description: ''
+    put:
+      operationId: superheroes_update
+      description: Update all fields of a specific superhero
+      summary: Update superhero
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Superhero.
+        required: true
+      tags:
+      - Superheroes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuperheroUpdateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SuperheroUpdateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SuperheroUpdateRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuperheroUpdate'
+          description: ''
+    patch:
+      operationId: superheroes_partial_update
+      description: Update specific fields of a superhero
+      summary: Partially update superhero
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Superhero.
+        required: true
+      tags:
+      - Superheroes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSuperheroUpdateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSuperheroUpdateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSuperheroUpdateRequest'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuperheroUpdate'
+          description: ''
+    delete:
+      operationId: superheroes_destroy
+      description: Delete a specific superhero
+      summary: Delete superhero
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Superhero.
+        required: true
+      tags:
+      - Superheroes
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/superheroes/{id}/toggle_active/:
+    post:
+      operationId: superheroes_toggle_active_create
+      description: Toggle whether a superhero is active or inactive
+      summary: Toggle active status
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Superhero.
+        required: true
+      tags:
+      - Superheroes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuperheroDetailRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SuperheroDetailRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SuperheroDetailRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuperheroDetail'
+          description: ''
+  /api/superheroes/{id}/toggle_villain/:
+    post:
+      operationId: superheroes_toggle_villain_create
+      description: Toggle whether a character is a superhero or villain
+      summary: Toggle superhero/villain status
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Superhero.
+        required: true
+      tags:
+      - Superheroes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuperheroDetailRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SuperheroDetailRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SuperheroDetailRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuperheroDetail'
+          description: ''
+  /api/superheroes/by_universe/:
+    get:
+      operationId: superheroes_by_universe_retrieve
+      description: Get all superheroes from a specific universe
+      summary: Get superheroes by universe
+      tags:
+      - Superheroes
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuperheroDetail'
+          description: ''
+  /api/superheroes/stats/:
+    get:
+      operationId: superheroes_stats_retrieve
+      description: Get comprehensive statistics about all superheroes
+      summary: Get superhero statistics
+      tags:
+      - Superheroes
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuperheroStats'
+          description: ''
+  /api/superheroes/top_superheroes/:
+    get:
+      operationId: superheroes_top_superheroes_retrieve
+      description: Get superheroes with the highest power levels
+      summary: Get top superheroes by power level
+      tags:
+      - Superheroes
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuperheroDetail'
+          description: ''
+  /api/superheroes/villains/:
+    get:
+      operationId: superheroes_villains_retrieve
+      description: Get all villains (characters marked as villains)
+      summary: Get villains
+      tags:
+      - Superheroes
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuperheroDetail'
+          description: ''
   /health/:
     get:
       operationId: health_check
@@ -44,6 +485,614 @@ components:
       - message
       - status
       - version
+    PaginatedSuperheroListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SuperheroList'
+    PatchedSuperheroUpdateRequest:
+      type: object
+      description: Serializer for updating existing superheroes.
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: The superhero's name
+          maxLength: 100
+        real_name:
+          type: string
+          nullable: true
+          description: The superhero's real/civilian name
+          maxLength: 100
+        alias:
+          type: string
+          nullable: true
+          description: Alternative name or alias
+          maxLength: 100
+        age:
+          type: integer
+          maximum: 10000
+          minimum: 1
+          nullable: true
+          description: Age in years
+        height:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+          description: Height in centimeters
+        weight:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,4}(?:\.\d{0,2})?$
+          nullable: true
+          description: Weight in kilograms
+        powers:
+          type: string
+          nullable: true
+          description: List of superpowers and abilities
+        power_level:
+          type: integer
+          maximum: 10
+          minimum: 1
+          description: Power level from 1 (weakest) to 10 (strongest)
+        origin_story:
+          type: string
+          nullable: true
+          description: Superhero's origin story
+        universe:
+          allOf:
+          - $ref: '#/components/schemas/UniverseEnum'
+          description: |-
+            Which universe the superhero belongs to
+
+            * `Marvel` - Marvel Universe
+            * `DC` - DC Universe
+            * `Custom` - Custom Universe
+            * `Other` - Other Universe
+        is_active:
+          type: boolean
+          description: Whether the superhero is currently active
+        is_villain:
+          type: boolean
+          description: Whether this character is a villain
+    SuperheroCreate:
+      type: object
+      description: Serializer for creating new superheroes.
+      properties:
+        name:
+          type: string
+          description: The superhero's name
+          maxLength: 100
+        real_name:
+          type: string
+          nullable: true
+          description: The superhero's real/civilian name
+          maxLength: 100
+        alias:
+          type: string
+          nullable: true
+          description: Alternative name or alias
+          maxLength: 100
+        age:
+          type: integer
+          maximum: 10000
+          minimum: 1
+          nullable: true
+          description: Age in years
+        height:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+          description: Height in centimeters
+        weight:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,4}(?:\.\d{0,2})?$
+          nullable: true
+          description: Weight in kilograms
+        powers:
+          type: string
+          nullable: true
+          description: List of superpowers and abilities
+        power_level:
+          type: integer
+          maximum: 10
+          minimum: 1
+          description: Power level from 1 (weakest) to 10 (strongest)
+        origin_story:
+          type: string
+          nullable: true
+          description: Superhero's origin story
+        universe:
+          allOf:
+          - $ref: '#/components/schemas/UniverseEnum'
+          description: |-
+            Which universe the superhero belongs to
+
+            * `Marvel` - Marvel Universe
+            * `DC` - DC Universe
+            * `Custom` - Custom Universe
+            * `Other` - Other Universe
+        is_active:
+          type: boolean
+          description: Whether the superhero is currently active
+        is_villain:
+          type: boolean
+          description: Whether this character is a villain
+      required:
+      - name
+    SuperheroCreateRequest:
+      type: object
+      description: Serializer for creating new superheroes.
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: The superhero's name
+          maxLength: 100
+        real_name:
+          type: string
+          nullable: true
+          description: The superhero's real/civilian name
+          maxLength: 100
+        alias:
+          type: string
+          nullable: true
+          description: Alternative name or alias
+          maxLength: 100
+        age:
+          type: integer
+          maximum: 10000
+          minimum: 1
+          nullable: true
+          description: Age in years
+        height:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+          description: Height in centimeters
+        weight:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,4}(?:\.\d{0,2})?$
+          nullable: true
+          description: Weight in kilograms
+        powers:
+          type: string
+          nullable: true
+          description: List of superpowers and abilities
+        power_level:
+          type: integer
+          maximum: 10
+          minimum: 1
+          description: Power level from 1 (weakest) to 10 (strongest)
+        origin_story:
+          type: string
+          nullable: true
+          description: Superhero's origin story
+        universe:
+          allOf:
+          - $ref: '#/components/schemas/UniverseEnum'
+          description: |-
+            Which universe the superhero belongs to
+
+            * `Marvel` - Marvel Universe
+            * `DC` - DC Universe
+            * `Custom` - Custom Universe
+            * `Other` - Other Universe
+        is_active:
+          type: boolean
+          description: Whether the superhero is currently active
+        is_villain:
+          type: boolean
+          description: Whether this character is a villain
+      required:
+      - name
+    SuperheroDetail:
+      type: object
+      description: Serializer for superhero detail view with all fields.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          description: The superhero's name
+          maxLength: 100
+        real_name:
+          type: string
+          nullable: true
+          description: The superhero's real/civilian name
+          maxLength: 100
+        alias:
+          type: string
+          nullable: true
+          description: Alternative name or alias
+          maxLength: 100
+        display_name:
+          type: string
+          readOnly: true
+        age:
+          type: integer
+          maximum: 10000
+          minimum: 1
+          nullable: true
+          description: Age in years
+        height:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+          description: Height in centimeters
+        weight:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,4}(?:\.\d{0,2})?$
+          nullable: true
+          description: Weight in kilograms
+        powers:
+          type: string
+          nullable: true
+          description: List of superpowers and abilities
+        power_level:
+          type: integer
+          maximum: 10
+          minimum: 1
+          description: Power level from 1 (weakest) to 10 (strongest)
+        power_description:
+          type: string
+          readOnly: true
+        origin_story:
+          type: string
+          nullable: true
+          description: Superhero's origin story
+        universe:
+          allOf:
+          - $ref: '#/components/schemas/UniverseEnum'
+          description: |-
+            Which universe the superhero belongs to
+
+            * `Marvel` - Marvel Universe
+            * `DC` - DC Universe
+            * `Custom` - Custom Universe
+            * `Other` - Other Universe
+        is_active:
+          type: boolean
+          description: Whether the superhero is currently active
+        is_villain:
+          type: boolean
+          description: Whether this character is a villain
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - display_name
+      - id
+      - name
+      - power_description
+      - updated_at
+    SuperheroDetailRequest:
+      type: object
+      description: Serializer for superhero detail view with all fields.
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: The superhero's name
+          maxLength: 100
+        real_name:
+          type: string
+          nullable: true
+          description: The superhero's real/civilian name
+          maxLength: 100
+        alias:
+          type: string
+          nullable: true
+          description: Alternative name or alias
+          maxLength: 100
+        age:
+          type: integer
+          maximum: 10000
+          minimum: 1
+          nullable: true
+          description: Age in years
+        height:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+          description: Height in centimeters
+        weight:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,4}(?:\.\d{0,2})?$
+          nullable: true
+          description: Weight in kilograms
+        powers:
+          type: string
+          nullable: true
+          description: List of superpowers and abilities
+        power_level:
+          type: integer
+          maximum: 10
+          minimum: 1
+          description: Power level from 1 (weakest) to 10 (strongest)
+        origin_story:
+          type: string
+          nullable: true
+          description: Superhero's origin story
+        universe:
+          allOf:
+          - $ref: '#/components/schemas/UniverseEnum'
+          description: |-
+            Which universe the superhero belongs to
+
+            * `Marvel` - Marvel Universe
+            * `DC` - DC Universe
+            * `Custom` - Custom Universe
+            * `Other` - Other Universe
+        is_active:
+          type: boolean
+          description: Whether the superhero is currently active
+        is_villain:
+          type: boolean
+          description: Whether this character is a villain
+      required:
+      - name
+    SuperheroList:
+      type: object
+      description: Serializer for superhero list view with essential fields.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          description: The superhero's name
+          maxLength: 100
+        display_name:
+          type: string
+          readOnly: true
+        universe:
+          allOf:
+          - $ref: '#/components/schemas/UniverseEnum'
+          description: |-
+            Which universe the superhero belongs to
+
+            * `Marvel` - Marvel Universe
+            * `DC` - DC Universe
+            * `Custom` - Custom Universe
+            * `Other` - Other Universe
+        power_level:
+          type: integer
+          maximum: 10
+          minimum: 1
+          description: Power level from 1 (weakest) to 10 (strongest)
+        power_description:
+          type: string
+          readOnly: true
+        is_active:
+          type: boolean
+          description: Whether the superhero is currently active
+        is_villain:
+          type: boolean
+          description: Whether this character is a villain
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - display_name
+      - id
+      - name
+      - power_description
+    SuperheroStats:
+      type: object
+      description: Serializer for superhero statistics.
+      properties:
+        total_superheroes:
+          type: integer
+        active_superheroes:
+          type: integer
+        inactive_superheroes:
+          type: integer
+        villains:
+          type: integer
+        superheroes:
+          type: integer
+        average_power_level:
+          type: number
+          format: double
+        universe_distribution:
+          type: object
+          additionalProperties: {}
+        power_level_distribution:
+          type: object
+          additionalProperties: {}
+      required:
+      - active_superheroes
+      - average_power_level
+      - inactive_superheroes
+      - power_level_distribution
+      - superheroes
+      - total_superheroes
+      - universe_distribution
+      - villains
+    SuperheroUpdate:
+      type: object
+      description: Serializer for updating existing superheroes.
+      properties:
+        name:
+          type: string
+          description: The superhero's name
+          maxLength: 100
+        real_name:
+          type: string
+          nullable: true
+          description: The superhero's real/civilian name
+          maxLength: 100
+        alias:
+          type: string
+          nullable: true
+          description: Alternative name or alias
+          maxLength: 100
+        age:
+          type: integer
+          maximum: 10000
+          minimum: 1
+          nullable: true
+          description: Age in years
+        height:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+          description: Height in centimeters
+        weight:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,4}(?:\.\d{0,2})?$
+          nullable: true
+          description: Weight in kilograms
+        powers:
+          type: string
+          nullable: true
+          description: List of superpowers and abilities
+        power_level:
+          type: integer
+          maximum: 10
+          minimum: 1
+          description: Power level from 1 (weakest) to 10 (strongest)
+        origin_story:
+          type: string
+          nullable: true
+          description: Superhero's origin story
+        universe:
+          allOf:
+          - $ref: '#/components/schemas/UniverseEnum'
+          description: |-
+            Which universe the superhero belongs to
+
+            * `Marvel` - Marvel Universe
+            * `DC` - DC Universe
+            * `Custom` - Custom Universe
+            * `Other` - Other Universe
+        is_active:
+          type: boolean
+          description: Whether the superhero is currently active
+        is_villain:
+          type: boolean
+          description: Whether this character is a villain
+      required:
+      - name
+    SuperheroUpdateRequest:
+      type: object
+      description: Serializer for updating existing superheroes.
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: The superhero's name
+          maxLength: 100
+        real_name:
+          type: string
+          nullable: true
+          description: The superhero's real/civilian name
+          maxLength: 100
+        alias:
+          type: string
+          nullable: true
+          description: Alternative name or alias
+          maxLength: 100
+        age:
+          type: integer
+          maximum: 10000
+          minimum: 1
+          nullable: true
+          description: Age in years
+        height:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+          description: Height in centimeters
+        weight:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,4}(?:\.\d{0,2})?$
+          nullable: true
+          description: Weight in kilograms
+        powers:
+          type: string
+          nullable: true
+          description: List of superpowers and abilities
+        power_level:
+          type: integer
+          maximum: 10
+          minimum: 1
+          description: Power level from 1 (weakest) to 10 (strongest)
+        origin_story:
+          type: string
+          nullable: true
+          description: Superhero's origin story
+        universe:
+          allOf:
+          - $ref: '#/components/schemas/UniverseEnum'
+          description: |-
+            Which universe the superhero belongs to
+
+            * `Marvel` - Marvel Universe
+            * `DC` - DC Universe
+            * `Custom` - Custom Universe
+            * `Other` - Other Universe
+        is_active:
+          type: boolean
+          description: Whether the superhero is currently active
+        is_villain:
+          type: boolean
+          description: Whether this character is a villain
+      required:
+      - name
+    UniverseEnum:
+      enum:
+      - Marvel
+      - DC
+      - Custom
+      - Other
+      type: string
+      description: |-
+        * `Marvel` - Marvel Universe
+        * `DC` - DC Universe
+        * `Custom` - Custom Universe
+        * `Other` - Other Universe
   securitySchemes:
     jwtAuth:
       type: http
