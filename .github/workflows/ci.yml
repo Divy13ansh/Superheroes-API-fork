@@ -2,7 +2,7 @@ name: DevSecOps Workflow
 
 on:
   push:
-    branches: [ main, devsecops ]
+    branches: [ main, dev ]
   pull_request:
     branches: [ main, dev ]
 
