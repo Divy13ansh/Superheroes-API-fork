@@ -1,0 +1,2 @@
+# Dagger CI/CD Pipeline Dependencies
+dagger-io>=0.9.0
