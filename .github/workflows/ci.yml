@@ -1,4 +1,4 @@
-name: DevSecOps Workflow
+name: Continuous Integration Workflow (CI)
 
 on:
   push:
