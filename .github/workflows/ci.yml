@@ -2,7 +2,7 @@ name: Continuous Integration Workflow (CI)
 
 on:
   push:
-    branches: [ main, dev ]
+    branches: [ main, dev, dagger ]
   pull_request:
     branches: [ main, dev ]
 
@@ -58,6 +58,6 @@ jobs:
 
         # Lint Flake8
         flake8 .
-        
+
 
     
