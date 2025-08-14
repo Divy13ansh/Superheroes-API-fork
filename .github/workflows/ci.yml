@@ -59,5 +59,3 @@ jobs:
         # Lint Flake8
         flake8 .
 
-
-    
