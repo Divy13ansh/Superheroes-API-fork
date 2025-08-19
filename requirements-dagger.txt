@@ -1,0 +1,2 @@
+# Dagger CI Pipeline Requirements
+dagger-io>=0.18.15
