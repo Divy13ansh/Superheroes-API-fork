@@ -3,15 +3,7 @@
 Demo script to show the Heroes API endpoints.
 """
 
-try:
-    import json
-    from urllib.parse import urljoin
-
-    import requests
-
-    REQUESTS_AVAILABLE = True
-except ImportError:
-    REQUESTS_AVAILABLE = False
+REQUESTS_AVAILABLE = False
 
 
 def print_section(title):

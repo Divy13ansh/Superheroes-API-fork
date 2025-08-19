@@ -1,4 +1,4 @@
-from django.db.models import Avg, Count, Q
+from django.db.models import Avg, Count
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import filters, status
@@ -137,9 +137,10 @@ class SuperheroViewSet(ModelViewSet):
         superhero.save()
 
         serializer = SuperheroDetailSerializer(superhero)
+        villain_status = "villain" if superhero.is_villain else "superhero"
         return Response(
             {
-                "message": f"{superhero.name} is now a {'villain' if superhero.is_villain else 'superhero'}",
+                "message": f"{superhero.name} is now a {villain_status}",
                 "superhero": serializer.data,
             }
         )
@@ -157,9 +158,10 @@ class SuperheroViewSet(ModelViewSet):
         superhero.save()
 
         serializer = SuperheroDetailSerializer(superhero)
+        active_status = "active" if superhero.is_active else "inactive"
         return Response(
             {
-                "message": f"{superhero.name} is now {'active' if superhero.is_active else 'inactive'}",
+                "message": f"{superhero.name} is now {active_status}",
                 "superhero": serializer.data,
             }
         )

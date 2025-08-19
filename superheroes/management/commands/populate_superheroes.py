@@ -28,9 +28,14 @@ class Command(BaseCommand):
                 "age": 25,
                 "height": Decimal("175.50"),
                 "weight": Decimal("70.00"),
-                "powers": "Web-slinging, wall-crawling, spider-sense, superhuman strength and agility",
+                "powers": (
+                    "Web-slinging, wall-crawling, spider-sense, "
+                    "superhuman strength and agility"
+                ),
                 "power_level": 7,
-                "origin_story": "Bitten by a radioactive spider while on a school field trip",
+                "origin_story": (
+                    "Bitten by a radioactive spider while on a school field trip"
+                ),
                 "universe": "Marvel",
                 "is_active": True,
                 "is_villain": False,
@@ -42,9 +47,15 @@ class Command(BaseCommand):
                 "age": 35,
                 "height": Decimal("188.00"),
                 "weight": Decimal("95.00"),
-                "powers": "Martial arts mastery, detective skills, advanced technology, peak human conditioning",
+                "powers": (
+                    "Martial arts mastery, detective skills, advanced technology, "
+                    "peak human conditioning"
+                ),
                 "power_level": 6,
-                "origin_story": "Witnessed his parents murder as a child, dedicated his life to fighting crime",
+                "origin_story": (
+                    "Witnessed his parents murder as a child, "
+                    "dedicated his life to fighting crime"
+                ),
                 "universe": "DC",
                 "is_active": True,
                 "is_villain": False,
@@ -56,9 +67,15 @@ class Command(BaseCommand):
                 "age": 30,
                 "height": Decimal("191.00"),
                 "weight": Decimal("107.00"),
-                "powers": "Flight, super strength, invulnerability, heat vision, x-ray vision, super speed",
+                "powers": (
+                    "Flight, super strength, invulnerability, heat vision, "
+                    "x-ray vision, super speed"
+                ),
                 "power_level": 10,
-                "origin_story": "Last son of Krypton, sent to Earth as a baby before his planet was destroyed",
+                "origin_story": (
+                    "Last son of Krypton, sent to Earth as a baby "
+                    "before his planet was destroyed"
+                ),
                 "universe": "DC",
                 "is_active": True,
                 "is_villain": False,
@@ -70,7 +87,10 @@ class Command(BaseCommand):
                 "age": 3000,
                 "height": Decimal("183.00"),
                 "weight": Decimal("74.00"),
-                "powers": "Super strength, flight, lasso of truth, bulletproof bracelets, combat skills",
+                "powers": (
+                    "Super strength, flight, lasso of truth, "
+                    "bulletproof bracelets, combat skills"
+                ),
                 "power_level": 9,
                 "origin_story": "Amazonian princess from Themyscira, daughter of Zeus",
                 "universe": "DC",
@@ -84,9 +104,14 @@ class Command(BaseCommand):
                 "age": 45,
                 "height": Decimal("185.00"),
                 "weight": Decimal("102.00"),
-                "powers": "Genius intellect, powered armor suit, repulsors, flight, advanced AI",
+                "powers": (
+                    "Genius intellect, powered armor suit, repulsors, "
+                    "flight, advanced AI"
+                ),
                 "power_level": 8,
-                "origin_story": "Billionaire inventor who built a suit of armor to escape captivity",
+                "origin_story": (
+                    "Billionaire inventor who built a suit of armor to escape captivity"
+                ),
                 "universe": "Marvel",
                 "is_active": True,
                 "is_villain": False,
@@ -98,9 +123,15 @@ class Command(BaseCommand):
                 "age": 40,
                 "height": Decimal("185.00"),
                 "weight": Decimal("86.00"),
-                "powers": "Genius-level intellect, unpredictability, toxins, psychological warfare",
+                "powers": (
+                    "Genius-level intellect, unpredictability, toxins, "
+                    "psychological warfare"
+                ),
                 "power_level": 5,
-                "origin_story": "Fell into a vat of chemicals, driving him insane and bleaching his skin",
+                "origin_story": (
+                    "Fell into a vat of chemicals, driving him insane "
+                    "and bleaching his skin"
+                ),
                 "universe": "DC",
                 "is_active": True,
                 "is_villain": True,
@@ -112,9 +143,13 @@ class Command(BaseCommand):
                 "age": 50,
                 "height": Decimal("180.00"),
                 "weight": Decimal("84.00"),
-                "powers": "Enhanced strength, glider flight, pumpkin bombs, genius intellect",
+                "powers": (
+                    "Enhanced strength, glider flight, pumpkin bombs, genius intellect"
+                ),
                 "power_level": 6,
-                "origin_story": "Chemical formula gave him enhanced abilities but drove him insane",
+                "origin_story": (
+                    "Chemical formula gave him enhanced abilities but drove him insane"
+                ),
                 "universe": "Marvel",
                 "is_active": True,
                 "is_villain": True,
@@ -126,7 +161,10 @@ class Command(BaseCommand):
                 "age": 100,
                 "height": Decimal("188.00"),
                 "weight": Decimal("109.00"),
-                "powers": "Enhanced strength, speed, agility, endurance, vibranium shield, tactical genius",
+                "powers": (
+                    "Enhanced strength, speed, agility, endurance, "
+                    "vibranium shield, tactical genius"
+                ),
                 "power_level": 7,
                 "origin_story": "Weak soldier enhanced by super-soldier serum during WWII",
                 "universe": "Marvel",
@@ -142,7 +180,10 @@ class Command(BaseCommand):
                 "weight": Decimal("81.00"),
                 "powers": "Super speed, time travel, phasing, speed force manipulation",
                 "power_level": 9,
-                "origin_story": "Struck by lightning while working in his lab, gained connection to Speed Force",
+                "origin_story": (
+                    "Struck by lightning while working in his lab, "
+                    "gained connection to Speed Force"
+                ),
                 "universe": "DC",
                 "is_active": True,
                 "is_villain": False,
@@ -156,7 +197,9 @@ class Command(BaseCommand):
                 "weight": Decimal("136.00"),
                 "powers": "Healing factor, adamantium claws, enhanced senses, longevity",
                 "power_level": 8,
-                "origin_story": "Born with mutant abilities, subjected to Weapon X program",
+                "origin_story": (
+                    "Born with mutant abilities, subjected to Weapon X program"
+                ),
                 "universe": "Marvel",
                 "is_active": True,
                 "is_villain": False,
