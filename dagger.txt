@@ -1,4 +1,0 @@
-isort
-anyio
-flake8
-black
