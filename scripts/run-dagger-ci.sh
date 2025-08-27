@@ -50,11 +50,6 @@ if [ $PIPELINE_EXIT_CODE -eq 0 ]; then
     echo "✅ Dagger CI Pipeline completed successfully!"
     echo "🎉 All linting and tests passed!"
     echo ""
-    echo "📊 What was executed:"
-    echo "   • Code formatting (black, isort)"
-    echo "   • Linting (flake8)"
-    echo "   • Unit tests (30 tests)"
-    echo "   • PostgreSQL integration"
     echo ""
     echo "💡 View detailed analytics at: https://dagger.cloud"
     exit 0

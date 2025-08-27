@@ -149,7 +149,7 @@ except Exception as e:
             print("Fast tests completed!")
 
         # Run linting and testing in parallel
-        print("Starting ultra-fast parallel execution with PostgreSQL...")
+        print("Starting  parallel execution with PostgreSQL...")
 
         start_time = asyncio.get_event_loop().time()
 
@@ -158,7 +158,7 @@ except Exception as e:
         end_time = asyncio.get_event_loop().time()
         duration = end_time - start_time
 
-        print(f"Ultra-fast PostgreSQL pipeline completed in {duration:.2f} seconds!")
+        print(f"PostgreSQL pipeline completed in {duration:.2f} seconds!")
 
 
 if __name__ == "__main__":

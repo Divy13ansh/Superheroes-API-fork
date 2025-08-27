@@ -24,24 +24,24 @@ async def test():
         )
 
         # PostgreSQL service with memory optimizations
-        postgres = (
-            client.container()
-            .from_("postgres:15-alpine")
-            .with_env_variable("POSTGRES_USER", "postgres")
-            .with_env_variable("POSTGRES_PASSWORD", "postgres")
-            .with_env_variable("POSTGRES_DB", "test_superheroes")
-            .with_env_variable("POSTGRES_HOST_AUTH_METHOD", "trust")
-            .with_env_variable("POSTGRES_INITDB_ARGS", "--auth-host=trust")
-            .with_env_variable("POSTGRES_MAX_CONNECTIONS", "10")
-            .with_env_variable("POSTGRES_SHARED_BUFFERS", "16MB")
-            .with_env_variable("POSTGRES_WORK_MEM", "1MB")
-            .with_env_variable("POSTGRES_MAINTENANCE_WORK_MEM", "8MB")
-            .with_env_variable("POSTGRES_CHECKPOINT_COMPLETION_TARGET", "0.9")
-            .with_env_variable("POSTGRES_WAL_BUFFERS", "1MB")
-            .with_env_variable("POSTGRES_DEFAULT_STATISTICS_TARGET", "10")
-            .with_exposed_port(5432)
-            .as_service()
-        )
+        # postgres = (
+        #     client.container()
+        #     .from_("postgres:15-alpine")
+        #     .with_env_variable("POSTGRES_USER", "postgres")
+        #     .with_env_variable("POSTGRES_PASSWORD", "postgres")
+        #     .with_env_variable("POSTGRES_DB", "test_superheroes")
+        #     .with_env_variable("POSTGRES_HOST_AUTH_METHOD", "trust")
+        #     .with_env_variable("POSTGRES_INITDB_ARGS", "--auth-host=trust")
+        #     .with_env_variable("POSTGRES_MAX_CONNECTIONS", "10")
+        #     .with_env_variable("POSTGRES_SHARED_BUFFERS", "16MB")
+        #     .with_env_variable("POSTGRES_WORK_MEM", "1MB")
+        #     .with_env_variable("POSTGRES_MAINTENANCE_WORK_MEM", "8MB")
+        #     .with_env_variable("POSTGRES_CHECKPOINT_COMPLETION_TARGET", "0.9")
+        #     .with_env_variable("POSTGRES_WAL_BUFFERS", "1MB")
+        #     .with_env_variable("POSTGRES_DEFAULT_STATISTICS_TARGET", "10")
+        #     .with_exposed_port(5432)
+        #     .as_service()
+        # )
 
         # Base Python container with aggressive caching
         base_python = (
@@ -66,7 +66,9 @@ async def test():
 
         # Cache Python dependencies
         python_deps = (
-            base_python.with_file("/tmp/requirements.txt", src.file("requirements.txt"))
+            base_python.with_file(
+                "/tmp/requirements_dagger.txt", src.file("requirements_dagger.txt")
+            )
             .with_exec(
                 [
                     "pip",
@@ -75,7 +77,7 @@ async def test():
                     "--cache-dir",
                     "/pip-cache",
                     "-r",
-                    "/tmp/requirements.txt",
+                    "/tmp/requirements_dagger.txt",
                 ]
             )
             .with_exec(
