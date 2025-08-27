@@ -34,7 +34,7 @@ jobs:
         with:
             workdir: .
             verb: run
-            args: dagger run dagger_pipeline.py 
+            args: python dagger_pipeline.py 
             cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
             version: "latest"  # semver x.y.z
 
