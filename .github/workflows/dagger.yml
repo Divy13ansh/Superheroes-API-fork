@@ -29,12 +29,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install dagger-io
 
-      - name: Integration Test
+      - name: Integration Test with Dagger
         uses: dagger/dagger-for-github@8.0.0
         with:
             workdir: .
             verb: run
-            args: dagger_pipeline_ci.py   
+            args: dagger_pipeline.py   
             cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
             version: "latest"  # semver x.y.z
 
