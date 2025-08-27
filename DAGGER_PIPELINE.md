@@ -166,19 +166,6 @@ You can modify `dagger_pipeline.py` to:
 └─────────┬───────┘
           │
           ▼
-┌─────────────────┐
-│ Docker Build    │
-│ (Cached)        │
-│ - Image Build   │
-│ - Startup Test  │
-└─────────┬───────┘
-          │
-          ▼
-┌─────────────────┐
-│ Integration     │
-│ - Health Check  │
-│ - API Tests     │
-└─────────────────┘
 ```
 
 ## Benefits of Dagger
@@ -248,7 +235,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.11'
     - name: Run Dagger Pipeline
       run: |
         pip install -r requirements-dagger.txt
@@ -278,7 +265,7 @@ The pipeline follows security best practices:
 To modify the pipeline:
 
 1. Edit `dagger_pipeline.py`
-2. Test locally: `python3 dagger_pipeline.py`
+2. Test locally: `dagger run ./scripts/run-dagger-ci.sh`
 3. Update documentation if needed
 4. Submit pull request
 
