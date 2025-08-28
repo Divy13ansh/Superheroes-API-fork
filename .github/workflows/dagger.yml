@@ -3,7 +3,7 @@ name: CI with Dagger
 on:
   push:
     branches:
-      - integrate
+      - main
 
 jobs:
   dagger-pipeline:
@@ -38,9 +38,3 @@ jobs:
             cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
             version: "latest"  # semver x.y.z
 
-    #   - name: Run Dagger pipeline
-    #     env:
-    #       DAGGER_LOG_LEVEL: info
-    #     run: |
-    #       chmod +x ./your_dagger_script.py
-    #       ./your_dagger_script.py
