@@ -15,4 +15,4 @@ jobs:
       - name: Update contributors in README
         uses: akhilmhdh/contributors-readme-action@v2.3
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
