@@ -237,6 +237,22 @@ class Command(BaseCommand):
                 "is_villain": False,
             },
             
+                "name": "Hulk",
+                "real_name": "Bruce Banner",
+                "alias": "The Incredible Hulk",
+                "age": 40,
+                "height": Decimal("244.00"),
+                "weight": Decimal("635.00"),
+                "powers": "Superhuman strength, regeneration, endurance, resistance to injury, transformation triggered by anger",
+                "power_level": 10,
+                "origin_story": (
+                    "After exposure to gamma radiation during an experiment gone wrong, scientist Bruce Banner transforms into the Hulk whenever he experiences extreme emotional stress"
+                ),
+                "universe": "Marvel",
+                "is_active": True,
+                "is_villain": False,
+            }
+
         ]
 
         created_count = 0
