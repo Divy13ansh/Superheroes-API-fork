@@ -4,6 +4,7 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
+from .serializers import SuperheroDetailSerializer
 
 from .models import Superhero
 
@@ -291,3 +292,53 @@ class SuperheroAPITest(APITestCase):
         data = {"name": "New Superhero", "power_level": 15}  # Invalid (max is 10)
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+
+class SuperheroSerializerTest(TestCase):
+    """Test cases for SuperheroDetailSerializer validations."""
+
+    def setUp(self):
+        self.valid_data = {
+            "name": "Thor",
+            "real_name": "Thor Odinson",
+            "alias": "God of Thunder",
+            "age": 1500,
+            "height": 195,
+            "weight": 110,
+            "powers": "Lightning, flight",
+            "power_level": 7,
+            "origin_story": "Prince of Asgard",
+            "universe": "Marvel",
+            "is_active": True,
+            "is_villain": False,
+        }
+
+    def test_valid_power_level(self):
+        """Ensure serializer passes for valid power_level between 1 and 10."""
+        serializer = SuperheroDetailSerializer(data=self.valid_data)
+        self.assertTrue(serializer.is_valid(), serializer.errors)
+
+    def test_power_level_below_minimum(self):
+        """Ensure serializer raises error when power_level < 1."""
+        data = self.valid_data.copy()
+        data["power_level"] = 0
+        serializer = SuperheroDetailSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertIn("power_level", serializer.errors)
+        self.assertEqual(
+            serializer.errors["power_level"][0],
+            "Power level must be between 1 and 10.",
+        )
+
+    def test_power_level_above_maximum(self):
+        """Ensure serializer raises error when power_level > 10."""
+        data = self.valid_data.copy()
+        data["power_level"] = 15
+        serializer = SuperheroDetailSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertIn("power_level", serializer.errors)
+        self.assertEqual(
+            serializer.errors["power_level"][0],
+            "Power level must be between 1 and 10.",
+        )
+

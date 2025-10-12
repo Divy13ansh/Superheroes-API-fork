@@ -31,6 +31,18 @@ class SuperheroDetailSerializer(serializers.ModelSerializer):
     display_name = serializers.ReadOnlyField()
     power_description = serializers.ReadOnlyField()
 
+    power_level = serializers.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        min_value=1,
+        max_value=10,
+        error_messages={
+            "min_value": "Power level must be between 1 and 10.",
+            "max_value": "Power level must be between 1 and 10.",
+        },
+    )
+
+
     class Meta:
         model = Superhero
         fields = [
@@ -53,12 +65,6 @@ class SuperheroDetailSerializer(serializers.ModelSerializer):
             "updated_at",
         ]
         read_only_fields = ["id", "created_at", "updated_at"]
-
-    def validate_power_level(self, value):
-        """Validate power level is within acceptable range."""
-        if value < 1 or value > 10:
-            raise serializers.ValidationError("Power level must be between 1 and 10.")
-        return value
 
     def validate_age(self, value):
         """Validate age is reasonable."""
