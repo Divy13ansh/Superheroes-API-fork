@@ -204,6 +204,22 @@ class Command(BaseCommand):
                 "is_active": True,
                 "is_villain": False,
             },
+            {
+                "name": "Black Widow",
+                "real_name": "Natasha Romanoff",
+                "alias": "Natasha",
+                "age": 35,
+                "height": Decimal("170.00"),
+                "weight": Decimal("59.00"),
+                "powers": "Expert martial artist, master spy, skilled marksman, peak human agility and reflexes",
+                "power_level": 7,
+                "origin_story": (
+                    "Trained in the Red Room program as a Russian spy and assassin, later defected to S.H.I.E.L.D. and became an Avenger"
+                ),
+                "universe": "Marvel",
+                "is_active": True,
+                "is_villain": False,
+            },
         ]
 
         created_count = 0
