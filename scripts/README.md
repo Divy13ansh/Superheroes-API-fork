@@ -154,12 +154,11 @@ Ensure all tests and linters pass before PR submission ✅
 
 ## 👥 Contributors
 
-A huge thanks to these amazing people for their contributions 💪
+Thanks to these amazing people for their contributions 💪
 
-- [@CyrilBaah](https://github.com/CyrilBaah) 🛠️
-- [@Deepakrameshkumar](https://github.com/Deepakrameshkumar)
-- [@SrinjoyeeDey](https://github.com/SrinjoyeeDey)
-- [@Lagmator22](https://github.com/Lagmator22)
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->
+
 
 📜 License
 MIT License — see LICENSE for details.
