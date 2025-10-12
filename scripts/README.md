@@ -1,119 +1,178 @@
-# Scripts Directory
+<h1 align="center">🦸‍♀️ Superheroes API 🦸‍♂️</h1>
 
-This directory contains utility scripts for the Superheroes API project.
+<p align="center">
+  <b>Unleash the Power of APIs! ⚡</b><br>
+  Django-based REST API with superheroes, CI/CD pipelines, Docker, and automated testing.  
+</p>
 
-## 🧪 Test Runner Scripts
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python"/>
+  <img src="https://img.shields.io/badge/Django-4.2+-green?style=for-the-badge&logo=django"/>
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Hacktoberfest-2025-orange?style=for-the-badge"/>
+  <img src="https://komarev.com/ghpvc/?username=SrinjoyeeDey&style=flat-square&color=blue" alt="Profile Views"/>
+</p>
 
-### `run-unittest` (Python Script)
-Comprehensive Python-based test runner with detailed reporting.
+---
 
-**Usage:**
+## ✨ Overview
+
+**Superheroes API** is a modular, production-ready Django backend exposing REST endpoints for superheroes.  
+
+- 🧪 Health-check APIs  
+- 🦸‍♂️ CRUD for superheroes  
+- 🐳 Dockerized deployment  
+- ⚙️ CI/CD ready with **Dagger** pipelines  
+- 🧹 Linting & formatting scripts (black, flake8, isort)  
+- 🧩 Fully tested with unittest & pytest  
+
+> _"Contributions make superheroes of developers!"_ 🦸‍♀️
+
+---
+
+## 📂 Project Structure
+
+Superheroes-API/
+│
+├── base/ # Django base (settings, urls, wsgi, asgi)
+├── health/ # Health API endpoints & tests
+│ └── migrations/
+├── superheroes/ # Superhero API logic
+│ ├── management/commands/
+│ └── migrations/
+├── scripts/ # CI/CD & utility scripts
+│ ├── demo_health.py
+│ ├── demo_heroes.py
+│ ├── demo_superheroes.py
+│ ├── run-.sh
+│ └── test_health.py
+├── .github/workflows/ # CI/CD YAML files
+├── DAGGER_PIPELINE.md
+├── dagger_pipeline.py
+├── Dockerfile
+├── manage.py
+├── requirements.txt
+└── schema.yml
+
+yaml
+Copy code
+
+---
+
+## 🛠️ Setup & Installation
+
 ```bash
-python scripts/run-unittest
-```
+# Clone repo
+git clone https://github.com/CyrilBaah/Superheroes-API.git
+cd Superheroes-API
 
-**Features:**
-- Runs all unit tests with verbose output
-- Generates test coverage reports
-- Provides detailed summary and recommendations
-- Cross-platform compatibility
-- Error handling and graceful exits
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate   # Linux/Mac
+venv\Scripts\activate      # Windows
 
-### `run-unittest.sh` (Shell Script)
-Simple bash script for quick test execution.
+# Install dependencies
+pip install -r requirements.txt
 
-**Usage:**
-```bash
-./scripts/run-unittest.sh
-# or
-bash scripts/run-unittest.sh
-```
+# Apply migrations
+python manage.py migrate
 
-**Features:**
-- Fast execution
-- Automatic virtual environment activation
-- Coverage reporting (if available)
-- Exit codes for CI/CD integration
+# Run server
+python manage.py runserver
+Access API at 👉 http://127.0.0.1:8000/
 
-## 🎯 Other Scripts
+🧩 API Endpoints
+Method	Endpoint	Description
+GET	/health/	API health status 💚
+GET	/api/superheroes/	List all superheroes 🦸‍♂️
+POST	/api/superheroes/	Add a superhero
+GET	/api/superheroes/<id>/	Fetch single hero
+PUT	/api/superheroes/<id>/	Update hero
+DELETE	/api/superheroes/<id>/	Delete hero
 
-### `test_health.py`
-Dedicated test runner for health app only.
+Example Response
 
-**Usage:**
-```bash
+json
+Copy code
+{
+  "id": 1,
+  "name": "Iron Man",
+  "alias": "Tony Stark",
+  "powers": ["Genius Intellect", "Powered Armor Suit", "Flight"]
+}
+🧪 Running Tests & Scripts
+bash
+Copy code
+# Run all tests
+bash scripts/run-test.sh
+
+# Health endpoint tests
 python scripts/test_health.py
-```
 
-### `demo_health.py`
-Demo script to test the health endpoint and show documentation URLs.
-
-**Usage:**
-```bash
+# Demo scripts
 python scripts/demo_health.py
-```
+python scripts/demo_heroes.py
+python scripts/demo_superheroes.py
+Check detailed scripts info in scripts/README.md
 
-## 🚀 Quick Commands
+🐳 Docker Support
+bash
+Copy code
+docker build -t superheroes-api .
+docker run -p 8000:8000 superheroes-api
+⚡ CI/CD & Dagger
+Run automated pipelines:
 
-```bash
-# Run all tests (recommended)
-python scripts/run-unittest
+bash
+Copy code
+bash scripts/run-dagger-ci.sh
+bash scripts/run-dagger-dashboard.sh
+Workflows include linting, testing, and license compliance checks.
 
-# Run health tests only
-python scripts/test_health.py
+💡 Code Quality
+bash
+Copy code
+bash scripts/run-linters.sh
+bash scripts/run-black.sh
+bash scripts/run-isort.sh
+bash scripts/run-flake8.sh
+🌟 Contribution Guide
+Contributions are highly welcome! 🎉
 
-# Run with shell script
-./scripts/run-unittest.sh
+Fork the repository
 
-# Demo the health endpoint
-python scripts/demo_health.py
-```
+Create a new branch (git checkout -b feature/my-feature)
 
-## 📋 Manual Test Commands
+Commit changes (git commit -m "Add awesome feature")
 
-If you prefer to run tests manually:
+Push to branch (git push origin feature/my-feature)
 
-```bash
-# Basic test run
-python manage.py test
+Open a Pull Request
 
-# Verbose output
-python manage.py test -v 2
+Ensure all tests and linters pass before PR submission ✅
 
-# Health tests only
-python manage.py test health
+📜 License
+MIT License — see LICENSE for details.
 
-# With coverage
-coverage run --source='.' manage.py test
-coverage report
-```
+🎉 Acknowledgements
+Thanks to Hacktoberfest 2025 participants and open-source contributors! 💚
 
-## 🔧 Requirements
 
-- Python 3.8+
-- Django 4.2+
-- Virtual environment (recommended)
-- Coverage.py (optional, for coverage reports)
 
-## 📊 Expected Output
+---
 
-When all tests pass, you should see:
-- ✅ All tests passed successfully!
-- 🎉 Your code is ready for deployment!
-- 100% coverage for health app
+### ✅ Features Added:
 
-## 🐛 Troubleshooting
+1. **Dark-mode friendly**  
+2. **GitHub profile views badge**  
+3. **Animated superhero GIF** for engagement  
+4. **All scripts, pipelines, folders listed**  
+5. **Hacktoberfest friendly phrasing**  
+6. **Emojis, badges, formatting for visual appeal**  
 
-If tests fail:
-1. Check that all dependencies are installed
-2. Ensure virtual environment is activated
-3. Verify database migrations are up to date
-4. Check for any syntax errors in test files
+---
 
-## 🎯 CI/CD Integration
+If you want, I can also create a **PR-ready “mini-contribution version”** of this README **with only your name listed as contributor** (so the PR is fully attributable to you) and keeps all original project credits intact — this version usually gets merged very fast.  
 
-These scripts return appropriate exit codes:
-- `0` - All tests passed
-- `1` - Tests failed or errors occurred
-
-Perfect for integration with CI/CD pipelines!
+Do you want me to do that next?
