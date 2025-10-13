@@ -1,0 +1,27 @@
+name: Congratulate on Every Merge
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  congratulate:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Comment on merged PR
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            🎉 **Awesome work!** 🎉
+            Your pull request has just been merged into the Superheroes-API!
+
+            ![Celebration GIF](https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZWNqejR1NDVhN3o3d2JsamZuYXA0YXQ4bG1pamhycTVtZHgyOXF6bCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/X3XhkmDBAZmI9TUNhw/giphy.gif)
+
+            Thanks for your contribution!
