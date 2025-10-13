@@ -18,19 +18,19 @@
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Documentation](#api-documentation)
-- [Testing](#testing)
-- [Docker Deployment](#docker-deployment)
-- [CI/CD Pipeline](#cicd-pipeline)
-- [Code Quality](#code-quality)
-- [Contributing](#contributing)
-- [License](#license)
+- [Overview](#-overview)
+- [Features](#-features)
+- [Project Structure](#-project-structure)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [API Documentation](#-api-documentation)
+- [Testing](#-testing)
+- [Docker Deployment](#-docker-deployment)
+- [CI/CD Pipeline](#️-cicd-pipeline)
+- [Code Quality](#-code-quality)
+- [Contributing](#-contributing)
+- [License](#-license)
 
 ---
 
@@ -139,6 +139,8 @@ Before you begin, ensure you have the following installed:
 git clone https://github.com/CyrilBaah/Superheroes-API.git
 cd Superheroes-API
 ```
+
+> **Note**: Replace `CyrilBaah` with your GitHub username if you've forked the repository.
 
 ### 2. Create Virtual Environment
 
@@ -360,7 +362,7 @@ bash scripts/run-dagger-dashboard.sh
 3. **Build**: Docker image creation
 4. **License Check**: License compliance verification
 
-For more details, see [DAGGER_PIPELINE.md](DAGGER_PIPELINE.md)
+For more details, see [DAGGER_PIPELINE.md](./DAGGER_PIPELINE.md)
 
 ---
 
@@ -485,7 +487,7 @@ Thanks to all the amazing contributors who have helped make this project better!
 
 ## 📄 License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE) file for details.
 
 ---
 
@@ -498,13 +500,15 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-## 📧 Contact
+## 📧 Contact & Support
 
 For questions, suggestions, or support:
 
-- **Repository**: [https://github.com/CyrilBaah/Superheroes-API](https://github.com/CyrilBaah/Superheroes-API)
-- **Issues**: [GitHub Issues](https://github.com/CyrilBaah/Superheroes-API/issues)
-- **Pull Requests**: [GitHub PRs](https://github.com/CyrilBaah/Superheroes-API/pulls)
+- **Repository**: https://github.com/CyrilBaah/Superheroes-API
+- **Report Issues**: Create an issue in the [Issues](https://github.com/CyrilBaah/Superheroes-API/issues) section
+- **Submit PRs**: Use the [Pull Requests](https://github.com/CyrilBaah/Superheroes-API/pulls) section
+
+> **Note**: Please verify the repository URL matches your actual GitHub repository. Update the links if your username or repository name is different.
 
 ---
 
