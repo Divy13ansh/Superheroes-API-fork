@@ -20,6 +20,7 @@ jobs:
             Thanks for opening your first issue here at the **Superheroes API** project! 🦸‍♂️  
             Please make sure to follow the issue template so we can help you faster. 💪  
             We’re glad to have you join the superhero league! ⚡
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Post welcome comment on new PR
         if: github.event_name == 'pull_request' && github.event.action == 'opened'
@@ -30,6 +31,7 @@ jobs:
             Hi @${{ github.actor }}! 🦸‍♀️  
             Thanks for opening this pull request! 🚀  
             Together, we’ll make the **Superheroes API** even stronger! 💥
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Congratulate user on their first merged PR
         if: |
@@ -45,3 +47,4 @@ jobs:
             Your first pull request has been successfully merged! 🦸‍♂️💪  
             The **Superheroes API** team is proud of you — you’ve just leveled up like a true superhero! ⚡  
             Keep contributing and saving the open-source world! 🌍🔥
+          token: ${{ secrets.GITHUB_TOKEN }}
