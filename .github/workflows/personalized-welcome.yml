@@ -1,0 +1,50 @@
+name: Personalized Welcome Messages
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened, closed]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post welcome comment on new issue
+        if: github.event_name == 'issues' && github.event.action == 'opened'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Hey @${{ github.actor }}! 👋  
+            Thanks for opening your first issue here at the **Superheroes API** project! 🦸‍♂️  
+            Please make sure to follow the issue template so we can help you faster. 💪  
+            We’re glad to have you join the superhero league! ⚡
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Post welcome comment on new PR
+        if: github.event_name == 'pull_request' && github.event.action == 'opened'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Hi @${{ github.actor }}! 🦸‍♀️  
+            Thanks for opening this pull request! 🚀  
+            Together, we’ll make the **Superheroes API** even stronger! 💥
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Congratulate user on their first merged PR
+        if: |
+          github.event_name == 'pull_request' &&
+          github.event.action == 'closed' &&
+          github.event.pull_request.merged == true &&
+          github.event.pull_request.author_association == 'FIRST_TIME_CONTRIBUTOR'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            🎉 **Congratulations @${{ github.actor }}!** 🎉  
+            Your first pull request has been successfully merged! 🦸‍♂️💪  
+            The **Superheroes API** team is proud of you — you’ve just leveled up like a true superhero! ⚡  
+            Keep contributing and saving the open-source world! 🌍🔥
+          token: ${{ secrets.GITHUB_TOKEN }}
