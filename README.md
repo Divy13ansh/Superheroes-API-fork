@@ -10,7 +10,7 @@
 
 **A production-ready Django REST API for managing superheroes with CI/CD pipelines, Docker support, and comprehensive testing.**
 
-[Features](#features) • [Installation](#installation) • [API Documentation](#api-documentation) • [Contributing](#contributing)
+[Features](#-features) • [Installation](#-installation) • [API Documentation](#-api-documentation) • [Contributing](#-contributing)
 
 </div>
 
