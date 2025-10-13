@@ -10,7 +10,7 @@
 
 **A production-ready Django REST API for managing superheroes with CI/CD pipelines, Docker support, and comprehensive testing.**
 
-[Features](#-features) • [Installation](#-installation) • [API Documentation](#-api-documentation) • [Contributing](#-contributing)
+[Features](#features) • [Installation](#installation) • [API Documentation](#api-documentation) • [Contributing](#contributing)
 
 </div>
 
@@ -18,19 +18,19 @@
 
 ## 📋 Table of Contents
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Project Structure](#-project-structure)
-- [Prerequisites](#-prerequisites)
-- [Installation](#-installation)
-- [Usage](#-usage)
-- [API Documentation](#-api-documentation)
-- [Testing](#-testing)
-- [Docker Deployment](#-docker-deployment)
-- [CI/CD Pipeline](#️-cicd-pipeline)
-- [Code Quality](#-code-quality)
-- [Contributing](#-contributing)
-- [License](#-license)
+- [Overview](#overview)
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Documentation](#api-documentation)
+- [Testing](#testing)
+- [Docker Deployment](#docker-deployment)
+- [CI/CD Pipeline](#cicd-pipeline)
+- [Code Quality](#code-quality)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
@@ -70,26 +70,38 @@
 Superheroes-API/
 │
 ├── base/                          # Django project settings
+│   ├── __init__.py                # Package initializer
 │   ├── settings.py                # Main configuration file
 │   ├── urls.py                    # Root URL routing
 │   ├── wsgi.py                    # WSGI application
 │   └── asgi.py                    # ASGI application
 │
 ├── health/                        # Health check application
+│   ├── __init__.py                # Package initializer
+│   ├── admin.py                   # Admin panel configuration
+│   ├── apps.py                    # App configuration
+│   ├── models.py                  # Health data models
 │   ├── views.py                   # Health endpoint views
 │   ├── urls.py                    # Health URL routing
 │   ├── tests.py                   # Health endpoint tests
 │   └── migrations/                # Database migrations
+│       └── __init__.py
 │
 ├── superheroes/                   # Superheroes application
+│   ├── __init__.py                # Package initializer
+│   ├── admin.py                   # Admin panel configuration
+│   ├── apps.py                    # App configuration
 │   ├── models.py                  # Superhero data models
 │   ├── serializers.py             # DRF serializers
 │   ├── views.py                   # API views
 │   ├── urls.py                    # Superhero URL routing
 │   ├── tests.py                   # Superhero tests
-│   ├── management/
-│   │   └── commands/              # Custom management commands
+│   ├── management/                # Custom management commands
+│   │   ├── __init__.py
+│   │   └── commands/
+│   │       └── __init__.py
 │   └── migrations/                # Database migrations
+│       └── __init__.py
 │
 ├── scripts/                       # Utility and CI/CD scripts
 │   ├── demo_health.py             # Health API demonstration
@@ -102,17 +114,22 @@ Superheroes-API/
 │   ├── run-isort.sh               # Import sorter
 │   ├── run-flake8.sh              # Linter script
 │   ├── run-dagger-ci.sh           # CI pipeline runner
-│   └── run-dagger-dashboard.sh    # Dagger dashboard
+│   ├── run-dagger-dashboard.sh    # Dagger dashboard
+│   └── README.md                  # Scripts documentation
 │
-├── .github/
+├── .github/                       # GitHub configuration
 │   └── workflows/                 # GitHub Actions workflows
+│       └── *.yml                  # CI/CD workflow files
 │
+├── .gitignore                     # Git ignore rules
 ├── dagger_pipeline.py             # Dagger CI/CD pipeline
 ├── DAGGER_PIPELINE.md             # Pipeline documentation
 ├── Dockerfile                     # Docker container definition
 ├── requirements.txt               # Python dependencies
+├── .isort.cfg                     # Python file organizer 
 ├── schema.yml                     # OpenAPI schema
 ├── manage.py                      # Django management script
+├── .flake8                        # Flake8 configuration 
 ├── LICENSE                        # MIT License
 └── README.md                      # Project documentation
 ```
@@ -139,8 +156,6 @@ Before you begin, ensure you have the following installed:
 git clone https://github.com/CyrilBaah/Superheroes-API.git
 cd Superheroes-API
 ```
-
-> **Note**: Replace `CyrilBaah` with your GitHub username if you've forked the repository.
 
 ### 2. Create Virtual Environment
 
@@ -362,7 +377,7 @@ bash scripts/run-dagger-dashboard.sh
 3. **Build**: Docker image creation
 4. **License Check**: License compliance verification
 
-For more details, see [DAGGER_PIPELINE.md](./DAGGER_PIPELINE.md)
+For more details, see [DAGGER_PIPELINE.md](DAGGER_PIPELINE.md)
 
 ---
 
@@ -487,7 +502,7 @@ Thanks to all the amazing contributors who have helped make this project better!
 
 ## 📄 License
 
-This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 ---
 
@@ -500,15 +515,13 @@ This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE
 
 ---
 
-## 📧 Contact & Support
+## 📧 Contact
 
 For questions, suggestions, or support:
 
-- **Repository**: https://github.com/CyrilBaah/Superheroes-API
-- **Report Issues**: Create an issue in the [Issues](https://github.com/CyrilBaah/Superheroes-API/issues) section
-- **Submit PRs**: Use the [Pull Requests](https://github.com/CyrilBaah/Superheroes-API/pulls) section
-
-> **Note**: Please verify the repository URL matches your actual GitHub repository. Update the links if your username or repository name is different.
+- **Repository**: [https://github.com/CyrilBaah/Superheroes-API](https://github.com/CyrilBaah/Superheroes-API)
+- **Issues**: [GitHub Issues](https://github.com/CyrilBaah/Superheroes-API/issues)
+- **Pull Requests**: [GitHub PRs](https://github.com/CyrilBaah/Superheroes-API/pulls)
 
 ---
 
