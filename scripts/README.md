@@ -152,6 +152,14 @@ Open a Pull Request
 
 Ensure all tests and linters pass before PR submission ✅
 
+## 👥 Contributors
+
+Thanks to these amazing people for their contributions 💪
+
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->
+
+
 📜 License
 MIT License — see LICENSE for details.
 
@@ -170,9 +178,3 @@ Thanks to Hacktoberfest 2025 participants and open-source contributors! 💚
 4. **All scripts, pipelines, folders listed**  
 5. **Hacktoberfest friendly phrasing**  
 6. **Emojis, badges, formatting for visual appeal**  
-
----
-
-If you want, I can also create a **PR-ready “mini-contribution version”** of this README **with only your name listed as contributor** (so the PR is fully attributable to you) and keeps all original project credits intact — this version usually gets merged very fast.  
-
-Do you want me to do that next?
