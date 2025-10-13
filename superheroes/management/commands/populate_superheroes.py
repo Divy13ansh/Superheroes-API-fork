@@ -251,6 +251,22 @@ class Command(BaseCommand):
                 "universe": "Marvel",
                 "is_active": True,
                 "is_villain": False,
+            }, 
+            {
+                "name": "Black Panther",
+                "real_name": "T'Challa",
+                "alias": "The King of Wakanda",
+                "age": 32,
+                "height": Decimal("183.00"),
+                "weight": Decimal("90.00"),
+                "powers": "Enhanced strength, agility, and senses from the Heart-Shaped Herb, master hand-to-hand combatant, genius-level intellect, advanced technology and suit made of vibranium",
+                "power_level": 9,
+                "origin_story": (
+                    "After the death of his father, King T'Chaka, T'Challa ascended to the throne of Wakanda and took on the mantle of Black Panther to protect his people and uphold justice."
+                ),
+                "universe": "Marvel",
+                "is_active": True,
+                "is_villain": False,
             }
 
         ]
