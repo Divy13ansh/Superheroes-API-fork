@@ -105,7 +105,14 @@ class SuperheroViewSet(ModelViewSet):
     @action(detail=False, methods=["get"])
     def top_superheroes(self, request):
         """Get top superheroes by power level."""
-        limit = int(request.query_params.get("limit", 10))
+        try:
+            limit = int(request.query_params.get("limit", 10))
+        except ValueError:
+            return Response(
+                {"error": "Invalid value for 'limit'. Must be an integer."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
         superheroes = self.queryset.filter(is_villain=False).order_by(
             "-power_level", "name"
         )[:limit]
