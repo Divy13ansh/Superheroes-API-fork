@@ -211,10 +211,14 @@ class Command(BaseCommand):
                 "age": 35,
                 "height": Decimal("170.00"),
                 "weight": Decimal("59.00"),
-                "powers": "Expert martial artist, master spy, skilled marksman, peak human agility and reflexes",
+                "powers": (
+                    "Expert martial artist, master spy, skilled marksman, "
+                    "peak human agility and reflexes"
+                ),
                 "power_level": 7,
                 "origin_story": (
-                    "Trained in the Red Room program as a Russian spy and assassin, later defected to S.H.I.E.L.D. and became an Avenger"
+                    "Trained in the Red Room program as a Russian spy and assassin, "
+                    "later defected to S.H.I.E.L.D. and became an Avenger"
                 ),
                 "universe": "Marvel",
                 "is_active": True,
@@ -227,31 +231,41 @@ class Command(BaseCommand):
                 "age": 36,
                 "height": Decimal("185.00"),
                 "weight": Decimal("101.00"),
-                "powers": "Superhuman strength, underwater breathing, telepathic communication with marine life, enhanced swimming speed, expert combat skills",
+                "powers": (
+                    "Superhuman strength, underwater breathing, telepathic communication "
+                    "with marine life, enhanced swimming speed, expert combat skills"
+                ),
                 "power_level": 8,
                 "origin_story": (
-                    "Born to a human father and Atlantean mother, Arthur discovered his heritage and destiny to unite the surface world and Atlantis as its rightful king."
+                    "Born to a human father and Atlantean mother, Arthur discovered his "
+                    "heritage and destiny to unite the surface world and Atlantis "
+                    "as its rightful king."
                 ),
                 "universe": "DC",
                 "is_active": True,
                 "is_villain": False,
             },
-            
+            {
                 "name": "Hulk",
                 "real_name": "Bruce Banner",
                 "alias": "The Incredible Hulk",
                 "age": 40,
                 "height": Decimal("244.00"),
                 "weight": Decimal("635.00"),
-                "powers": "Superhuman strength, regeneration, endurance, resistance to injury, transformation triggered by anger",
+                "powers": (
+                    "Superhuman strength, regeneration, endurance, resistance to injury, "
+                    "transformation triggered by anger"
+                ),
                 "power_level": 10,
                 "origin_story": (
-                    "After exposure to gamma radiation during an experiment gone wrong, scientist Bruce Banner transforms into the Hulk whenever he experiences extreme emotional stress"
+                    "After exposure to gamma radiation during an experiment gone wrong, "
+                    "scientist Bruce Banner transforms into the Hulk whenever he "
+                    "experiences extreme emotional stress"
                 ),
                 "universe": "Marvel",
                 "is_active": True,
                 "is_villain": False,
-            }, 
+            },
             {
                 "name": "Black Panther",
                 "real_name": "T'Challa",
@@ -259,16 +273,21 @@ class Command(BaseCommand):
                 "age": 32,
                 "height": Decimal("183.00"),
                 "weight": Decimal("90.00"),
-                "powers": "Enhanced strength, agility, and senses from the Heart-Shaped Herb, master hand-to-hand combatant, genius-level intellect, advanced technology and suit made of vibranium",
+                "powers": (
+                    "Enhanced strength, agility, and senses from the Heart-Shaped Herb, "
+                    "master hand-to-hand combatant, genius-level intellect, "
+                    "advanced technology and suit made of vibranium"
+                ),
                 "power_level": 9,
                 "origin_story": (
-                    "After the death of his father, King T'Chaka, T'Challa ascended to the throne of Wakanda and took on the mantle of Black Panther to protect his people and uphold justice."
+                    "After the death of his father, King T'Chaka, T'Challa ascended "
+                    "to the throne of Wakanda and took on the mantle of Black Panther "
+                    "to protect his people and uphold justice."
                 ),
                 "universe": "Marvel",
                 "is_active": True,
                 "is_villain": False,
-            }
-
+            },
         ]
 
         created_count = 0
