@@ -4,9 +4,9 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
-from .serializers import SuperheroDetailSerializer
 
 from .models import Superhero
+from .serializers import SuperheroDetailSerializer
 
 
 class SuperheroModelTest(TestCase):
@@ -341,4 +341,3 @@ class SuperheroSerializerTest(TestCase):
             serializer.errors["power_level"][0],
             "Power level must be between 1 and 10.",
         )
-

@@ -42,7 +42,6 @@ class SuperheroDetailSerializer(serializers.ModelSerializer):
         },
     )
 
-
     class Meta:
         model = Superhero
         fields = [
