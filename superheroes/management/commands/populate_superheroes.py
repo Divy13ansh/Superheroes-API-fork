@@ -288,6 +288,27 @@ class Command(BaseCommand):
                 "is_active": True,
                 "is_villain": False,
             },
+            {
+                "name": "Quantum Guardian",
+                "real_name": "Dr. Maya Chen",
+                "alias": "The Phase Walker",
+                "age": 29,
+                "height": Decimal("165.00"),
+                "weight": Decimal("58.00"),
+                "powers": (
+                    "Quantum phase manipulation, dimensional shifting, energy absorption, "
+                    "molecular restructuring, temporal awareness"
+                ),
+                "power_level": 9,
+                "origin_story": (
+                    "Physicist Dr. Maya Chen was caught in a quantum field experiment "
+                    "that merged her consciousness with quantum particles, allowing her "
+                    "to manipulate reality at the subatomic level."
+                ),
+                "universe": "Original",
+                "is_active": True,
+                "is_villain": False,
+            },
         ]
 
         created_count = 0
