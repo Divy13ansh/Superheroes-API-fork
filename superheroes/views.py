@@ -106,9 +106,9 @@ class SuperheroViewSet(ModelViewSet):
     def top_superheroes(self, request):
         """Get top superheroes by power level."""
         try:
-            limit = int(request.query_params.get("limit", 10)) 
+            limit = int(request.query_params.get("limit", 10))
             if limit < 0:
-                raise ValueError("Invalid value for 'limit'. Must be an positive integrer")   
+                raise ValueError("Invalid value for 'limit'. Must be a positive integer")
         except ValueError:
             return Response(
                 {"error": "Invalid value for 'limit'. Must be an integer."},
